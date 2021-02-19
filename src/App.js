@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        {this.state.status ? <h1>Logged in</h1> : <h1>Logged out</h1>}
+        {this.state.status ? <h1>Loggedddddddddddddddd in</h1> : <h1>Logged out</h1>}
         <Button clickHandler={this.clickHandler} status={this.state.status} />
       </div>
     );
