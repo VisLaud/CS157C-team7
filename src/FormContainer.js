@@ -2,25 +2,21 @@ import React, { Component } from "react";
 import FormComponent from "./FormComponent";
 
 class FormContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      startTime: "",
-      endTime: "",
-      floor: "",
-      section: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  state = {
+    startTime: "",
+    endTime: "",
+    floor: "",
+    section: "",
+  };
 
-  handleChange(event) {
+  handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
-  }
-  handleSubmit(event) {
+  };
+  
+  handleSubmit = (event) => {
     event.preventDefault();
     this.setState({
       startTime: "",
@@ -29,7 +25,7 @@ class FormContainer extends Component {
       section: "",
     });
     console.log("Submitted");
-  }
+  };
 
   render() {
     return (
