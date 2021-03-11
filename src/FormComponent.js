@@ -67,16 +67,16 @@ function FormComponent(props) {
         <button>Submit</button>
       </form>
 
-      <h1>
+      <h3>
         {props.data.startTime == "" || props.data.endTime == ""
           ? null
           : `Your start time is ${props.data.startTime} and end time is ${props.data.endTime}`}
-      </h1>
-      <h1>
+      </h3>
+      <h3>
         {props.data.floor == "" || props.data.section == ""
           ? null
           : `And you are going to ${props.data.floor} - ${props.data.section}`}
-      </h1>
+      </h3>
     </main>
   );
 }
