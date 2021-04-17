@@ -12,7 +12,7 @@ const Posts = () => {
   return !posts.length ? (
     <div className={classes.root}>
       <LinearProgress />
-      <h2>You have no event scheduled</h2>
+      <h2>Loading your schedules....</h2>
       <LinearProgress color="secondary" />
     </div>
   ) : (
