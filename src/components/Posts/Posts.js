@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Grid, CircularProgress, LinearProgress } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import useStyles from "./styles";
@@ -10,7 +10,15 @@ const Posts = ({ employeeid }) => {
   const posts = useSelector((state) =>
     state.posts.find((post) => post.employeeid === employeeid)
   );
-  console.log(posts);
+  console.log(posts ? posts.meetings : null);
+  const testv1 = {
+    employeeid: 1,
+    floor: 3,
+    section: 2,
+    startTime: "2021-03-28T00:33",
+    endTime: "2021-04-07T00:33",
+    note: "adsfasd",
+  };
   return !posts ? (
     <div className={classes.root}>
       <LinearProgress />
@@ -20,6 +28,9 @@ const Posts = ({ employeeid }) => {
   ) : (
     <div>
       <h1>Scheduled Events</h1>
+      {posts
+        ? posts.meetings.map((post) => <Post key={post._id} post={post} />)
+        : null}
     </div>
   );
 };

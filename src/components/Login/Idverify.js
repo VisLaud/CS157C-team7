@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState useRef } from "react";
 
 function Idverify() {
     const STARTING_TIME = 5;
@@ -29,16 +29,6 @@ function Idverify() {
         setGameState(false);
         setWCount(calculateWords(text));
     };
-
-    useEffect(() => {
-        gameState &&
-            time > 0 &&
-            setTimeout(() => setTime((prevTime) => prevTime - 1), 1000);
-
-        if (time === 0) {
-            endGame();
-        }
-    }, [time, gameState]);
 
     //console.log(calculateWords(text));
     return (
