@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   AppBar,
@@ -20,6 +20,8 @@ import covid from "./assets/covid.jpg";
 function App() {
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  const [employeeid, setEmployeeid] = useState(0);
 
   useEffect(() => {
     dispatch(getPosts());
@@ -64,10 +66,10 @@ function App() {
                   spacing={3}
                 >
                   <Grid item xs={12} sm={4}>
-                    <Form />
+                    <Form employeeid={employeeid} />
                   </Grid>
                   <Grid item xs={12} sm={4}>
-                    <Posts />
+                    <Posts employeeid={employeeid} />
                   </Grid>
                 </Grid>
               </Container>

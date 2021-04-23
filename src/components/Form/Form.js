@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import {
   TextField,
   Button,
@@ -9,31 +10,50 @@ import {
   Select,
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { createPost } from "../../actions/posts";
+import { createPost, updatePost } from "../../actions/posts";
 
 import useStyles from "./styles";
 
-const Form = () => {
+const Form = ({ employeeid }) => {
   const [postData, setPostData] = useState({
-    employeeid: 0,
     startTime: "",
     endTime: "",
     floor: 0,
     section: 0,
     note: "",
   });
+
+  const [endPost, setEndPost] = useState({
+    employeeid: employeeid,
+    meetings: [],
+  });
+
+  const [postID, setPostId] = useState(0);
+
+  const searchedPost = useSelector((state) =>
+    state.posts.find((post) => post.employeeid === employeeid)
+  );
+
+  // console.log(searchedPost);
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPost(postData));
+    const submitData = {
+      ...searchedPost,
+      meetings: [...searchedPost.meetings, postData],
+    };
+    dispatch(updatePost(postID, submitData));
     clear();
   };
 
+  useEffect(() => {
+    if (searchedPost) setPostId(searchedPost._id);
+  }, [searchedPost]);
+
   const clear = () => {
     setPostData({
-      employeeid: "",
       startTime: "",
       endTime: "",
       floor: "",
