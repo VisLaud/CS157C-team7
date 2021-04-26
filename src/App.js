@@ -6,6 +6,7 @@ import {
   Grow,
   Grid,
   Button,
+  Input,
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 
@@ -21,11 +22,12 @@ function App() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const [employeeid, setEmployeeid] = useState(1);
-
+  const [employeeid, setEmployeeid] = useState(0);
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
+
+  useEffect(() => {}, [employeeid]);
 
   return (
     <React.Fragment>
@@ -40,6 +42,14 @@ function App() {
       </Container>
       <Switch>
         <Route exact path="/">
+          <Input
+            onChange={(e) => {
+              return setEmployeeid(parseInt(e.target.value));
+            }}
+          >
+            Enter ID
+          </Input>
+
           <Link to="/id" style={{ textDecoration: "none" }}>
             <Button variant="contained" color="primary">
               <span> Login</span>
