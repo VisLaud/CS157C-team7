@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles(() => ({
   appBar: {
     borderRadius: 15,
+    marginTop: "75px",
     margin: "50px 0",
     display: "flex",
     flexDirection: "row",
@@ -30,5 +31,13 @@ export default makeStyles(() => ({
   covid: {
     width: "50px",
     height: "auto",
+  },
+  login: {
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "400px",
+    height: "400px",
+    backgroundColor: "#e3fbf7",
   },
 }));

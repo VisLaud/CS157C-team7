@@ -9,6 +9,7 @@ const postSchema = mongoose.Schema({
       floor: { type: Number, default: 0 },
       section: { type: Number, default: 0 },
       note: String,
+      cstatus: { type: Boolean, default: false },
     },
   ],
 });

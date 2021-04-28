@@ -7,6 +7,8 @@ import {
   Grid,
   Button,
   Input,
+  Card,
+  CardContent,
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 
@@ -42,19 +44,25 @@ function App() {
       </Container>
       <Switch>
         <Route exact path="/">
-          <Input
-            onChange={(e) => {
-              return setEmployeeid(parseInt(e.target.value));
-            }}
-          >
-            Enter ID
-          </Input>
-
-          <Link to="/id" style={{ textDecoration: "none" }}>
-            <Button variant="contained" color="primary">
-              <span> Login</span>
-            </Button>
-          </Link>
+          <Card className={classes.login}>
+            <CardContent>
+              <Typography>Enter Your ID</Typography>
+              <Input
+                onChange={(e) => {
+                  return setEmployeeid(parseInt(e.target.value));
+                }}
+              >
+                Enter ID
+              </Input>
+              <br />
+              <br />
+              <Link to="/id" style={{ textDecoration: "none" }}>
+                <Button variant="contained" color="primary">
+                  <span> Login</span>
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
         </Route>
         <Route path="/id">
           <Link
