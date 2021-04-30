@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
+=======
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+>>>>>>> fafff138658ca2c61134b97b3d592c1c779461e2
 import {
   TextField,
   Button,
@@ -9,6 +14,7 @@ import {
   Select,
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
+<<<<<<< HEAD
 import { createPost } from "../../actions/posts";
 
 import useStyles from "./styles";
@@ -16,17 +22,42 @@ import useStyles from "./styles";
 const Form = () => {
   const [postData, setPostData] = useState({
     employeeid: 0,
+=======
+import { createPost, updatePost } from "../../actions/posts";
+
+import useStyles from "./styles";
+
+const Form = ({ employeeid }) => {
+  const [postData, setPostData] = useState({
+>>>>>>> fafff138658ca2c61134b97b3d592c1c779461e2
     startTime: "",
     endTime: "",
     floor: 0,
     section: 0,
     note: "",
   });
+<<<<<<< HEAD
+=======
+
+  const [endPost, setEndPost] = useState({
+    employeeid: employeeid,
+    meetings: [],
+  });
+
+  const [postID, setPostId] = useState(0);
+
+  const searchedPost = useSelector((state) =>
+    state.posts.find((post) => post.employeeid === employeeid)
+  );
+
+  // console.log(searchedPost);
+>>>>>>> fafff138658ca2c61134b97b3d592c1c779461e2
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     dispatch(createPost(postData));
     clear();
   };
@@ -34,6 +65,22 @@ const Form = () => {
   const clear = () => {
     setPostData({
       employeeid: "",
+=======
+    const submitData = {
+      ...searchedPost,
+      meetings: [...searchedPost.meetings, postData],
+    };
+    dispatch(updatePost(postID, submitData));
+    clear();
+  };
+
+  useEffect(() => {
+    if (searchedPost) setPostId(searchedPost._id);
+  }, [searchedPost]);
+
+  const clear = () => {
+    setPostData({
+>>>>>>> fafff138658ca2c61134b97b3d592c1c779461e2
       startTime: "",
       endTime: "",
       floor: "",
