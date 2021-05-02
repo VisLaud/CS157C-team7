@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import covidChecker from "../Verify/CovidChecker";
 import {
   Grid,
   CircularProgress,
@@ -12,20 +13,22 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@material-ui/core";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
+import Alert from "@material-ui/lab/Alert";
 import useStyles from "./styles";
 import { useDispatch } from "react-redux";
 import { createPost, updatePost } from "../../actions/posts";
 
 const Center = ({ employeeid }) => {
   const [open, setOpen] = React.useState(false);
+  const [alertTimer, setAlertTimer] = React.useState(false);
   const classes = useStyles();
-  const post = useSelector((state) =>
-    state.posts.find((post) => post.employeeid === employeeid)
-  );
+  const posts = useSelector((state) => state.posts);
+  const post = posts.find((post) => post.employeeid === employeeid);
 
   const [postID, setPostId] = useState(0);
-
+  let stat = "";
   const dispatch = useDispatch();
   const covidConfirm = (e) => {
     e.preventDefault();
@@ -39,14 +42,17 @@ const Center = ({ employeeid }) => {
 
   useEffect(() => {
     if (post) setPostId(post._id);
-  }, [post]);
+  }, [post, posts, stat, alertTimer]);
 
   const getStatus = () => {
     if (post.covidstat) {
+      stat = "Infected";
       return classes.danger;
     } else if (post.checkstat) {
+      stat = "At Risk";
       return classes.risk;
     }
+    stat = "Safe";
     return classes.safe;
   };
 
@@ -58,9 +64,53 @@ const Center = ({ employeeid }) => {
     setOpen(false);
   };
 
+  const alert = () => {
+    if (post.checkstat) {
+      return (
+        <Alert variant="filled" severity="warning">
+          Looks like you have been in contact with someone who is infected.
+          Please contact the department ASAP
+        </Alert>
+      );
+    } else
+      return (
+        <Alert variant="filled" severity="success">
+          No match found
+        </Alert>
+      );
+  };
+
+  const checkStatus = () => {
+    const checked = covidChecker(employeeid, posts);
+    const submitData = {
+      ...post,
+      checkstat: checked,
+    };
+    dispatch(updatePost(postID, submitData));
+    console.log(checked);
+    setAlertTimer(true);
+    setTimeout(() => setAlertTimer(false), 10000);
+  };
+
+  const theme = createMuiTheme();
+
+  theme.typography.h3 = {
+    fontSize: "1.2rem",
+    "@media (min-width:600px)": {
+      fontSize: "1.5rem",
+    },
+    textAlign: "center",
+    [theme.breakpoints.up("md")]: {
+      fontSize: "1.6rem",
+    },
+  };
+
   return post ? (
     <Card className={getStatus()}>
-      <Typography>Current Status: </Typography>
+      <ThemeProvider theme={theme}>
+        <Typography variant="h3">Current Status: {stat} </Typography>
+      </ThemeProvider>
+      <br />
       <Typography>
         <Button
           variant="contained"
@@ -96,6 +146,18 @@ const Center = ({ employeeid }) => {
           </DialogActions>
         </Dialog>
       </Typography>
+      <br />
+      <Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={checkStatus}
+          disabled={post.covidstat}
+        >
+          Check for covid
+        </Button>
+      </Typography>
+      {alertTimer ? alert() : null}
     </Card>
   ) : null;
 };

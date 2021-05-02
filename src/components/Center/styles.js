@@ -5,18 +5,24 @@ export default makeStyles((theme) => ({
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
     },
-    backgroundColor: "#00cc66",
+    backgroundColor: "#4CAF50",
   },
   risk: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
     },
-    backgroundColor: "#ffff00",
+    backgroundColor: "#FF9800",
   },
   danger: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
     },
-    backgroundColor: "#ff5050",
+    backgroundColor: "#F44336",
+  },
+  alert: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
   },
 }));
