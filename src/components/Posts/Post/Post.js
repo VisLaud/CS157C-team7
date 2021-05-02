@@ -1,26 +1,32 @@
 import React from "react";
-import { List, ListItem, ListItemText, ListItemLink } from "@material-ui/core";
+import { Card, CardContent, Typography } from "@material-ui/core";
 import useStyles from "./styles";
 
 const Post = ({ post }) => {
   const classes = useStyles();
 
-  function ListItemLink(props) {
-    return <ListItem button component="a" {...props} />;
-  }
-
   return (
-  
-    <div className={classes.root}>
-      <List component="nav" aria-label="secondary mailbox folders">
-        <ListItem button>
-          <ListItemText
-            primary={`Start Time: ${post.startTime} End Time: ${post.endTime} Floor: ${post.floor}-${post.section}`}
-            secondary={`note: ${post.note}`}
-          />
-        </ListItem>
-      </List>
-    </div>
+    <Card className={classes.root} variant="outlined">
+      <CardContent>
+        <Typography>
+          {`Start Time: ${new Date(post.startTime).toDateString()}, ${new Date(
+            post.startTime
+          )
+            .toLocaleTimeString()
+            .replace(/(.*)\D\d+/, "$1")}`}
+        </Typography>
+        <Typography>
+          {`End Time : ${new Date(post.endTime).toDateString()}, ${new Date(
+            post.endTime
+          )
+            .toLocaleTimeString()
+            .replace(/(.*)\D\d+/, "$1")}`}
+        </Typography>
+        <Typography>{`Floor: ${post.floor}-${post.section}`}</Typography>
+
+        <Typography color="textSecondary">{`note: ${post.note}`}</Typography>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -10,7 +10,7 @@ import {
   Card,
   CardContent,
 } from "@material-ui/core";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getPosts } from "./actions/posts";
 import Form from "./components/Form/Form";
@@ -19,10 +19,13 @@ import useStyles from "./styles";
 import { Link, Switch, Route } from "react-router-dom";
 import pepe from "./assets/on_duty.gif";
 import covid from "./assets/covid.jpg";
+import Center from "./components/Center/Center";
 
 function App() {
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  const posts = useSelector((state) => state);
 
   const [employeeid, setEmployeeid] = useState(0);
   useEffect(() => {
@@ -85,6 +88,9 @@ function App() {
                 >
                   <Grid item xs={12} sm={4}>
                     <Form employeeid={employeeid} />
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <Center employeeid={employeeid} />
                   </Grid>
                   <Grid item xs={12} sm={4}>
                     <Posts employeeid={employeeid} />

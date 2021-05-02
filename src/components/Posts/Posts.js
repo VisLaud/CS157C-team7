@@ -12,7 +12,7 @@ const Posts = ({ employeeid }) => {
   );
 
   return (
-    <div>
+    <div className={classes.root}>
       <h1>Scheduled Events</h1>
       {posts
         ? posts.meetings.map((post) => <Post key={post._id} post={post} />)
