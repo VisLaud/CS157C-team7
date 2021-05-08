@@ -92,6 +92,16 @@ function App() {
                   </Grid>
                   <Grid item xs={12} sm={4}>
                     <Center employeeid={employeeid} />
+                    <br />
+                    <Button
+                      variant="contained"
+                      color="default"
+                      size="large"
+                      href="https://internal-covid-tracker-data.netlify.app/"
+                      target="_blank"
+                    >
+                      Learn More About Covid-19
+                    </Button>
                   </Grid>
                   <Grid item xs={12} sm={4}>
                     <Posts employeeid={employeeid} />

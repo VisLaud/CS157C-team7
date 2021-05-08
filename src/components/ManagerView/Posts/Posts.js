@@ -72,7 +72,7 @@ function Posts({ post }) {
           variant="contained"
           color="secondary"
           onClick={handleClickOpen}
-          disabled={!post.covidstat}
+          disabled={!post.covidstat && !post.checkstat}
           variant="outlined"
         >
           Reset

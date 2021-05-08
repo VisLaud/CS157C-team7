@@ -36,8 +36,10 @@ export default makeStyles(() => ({
     display: "block",
     marginLeft: "auto",
     marginRight: "auto",
+    paddingTop: "20px",
     width: "400px",
-    height: "400px",
+    height: "autp",
     backgroundColor: "#e3fbf7",
+    textAlign: "center",
   },
 }));
