@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Grid, CircularProgress, LinearProgress } from "@material-ui/core";
+import {
+  Grid,
+  CircularProgress,
+  LinearProgress,
+  Typography,
+} from "@material-ui/core";
 import { useSelector } from "react-redux";
 import useStyles from "./styles";
 

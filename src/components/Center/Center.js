@@ -87,9 +87,8 @@ const Center = ({ employeeid }) => {
       checkstat: checked,
     };
     dispatch(updatePost(postID, submitData));
-    console.log(checked);
     setAlertTimer(true);
-    setTimeout(() => setAlertTimer(false), 10000);
+    setTimeout(() => setAlertTimer(false), 5000);
   };
 
   const theme = createMuiTheme();
@@ -98,15 +97,19 @@ const Center = ({ employeeid }) => {
     fontSize: "1.2rem",
     "@media (min-width:600px)": {
       fontSize: "1.5rem",
+      fontFamily: "cursive",
     },
     textAlign: "center",
     [theme.breakpoints.up("md")]: {
-      fontSize: "1.6rem",
+      fontSize: "1.5rem",
     },
   };
 
   return post ? (
     <Card className={getStatus()}>
+      <ThemeProvider theme={theme}>
+        <Typography variant="h3">Employee {employeeid} </Typography>
+      </ThemeProvider>
       <ThemeProvider theme={theme}>
         <Typography variant="h3">Current Status: {stat} </Typography>
       </ThemeProvider>

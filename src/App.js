@@ -20,6 +20,7 @@ import { Link, Switch, Route } from "react-router-dom";
 import pepe from "./assets/on_duty.gif";
 import covid from "./assets/covid.jpg";
 import Center from "./components/Center/Center";
+import Manager from "./components/ManagerView/Manager";
 
 function App() {
   const classes = useStyles();
@@ -97,6 +98,11 @@ function App() {
                   </Grid>
                 </Grid>
               </Container>
+            </Grow>
+          </Container>
+          <Container>
+            <Grow in>
+              <Manager employeeid={employeeid} />
             </Grow>
           </Container>
         </Route>

@@ -7,5 +7,6 @@ export default makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     marginTop: "1px",
     textAlign: "center",
+
   },
 }));
